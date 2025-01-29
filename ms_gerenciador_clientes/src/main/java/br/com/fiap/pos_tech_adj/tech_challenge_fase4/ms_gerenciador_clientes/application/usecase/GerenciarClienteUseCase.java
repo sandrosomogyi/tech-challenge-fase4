@@ -17,7 +17,6 @@ public class GerenciarClienteUseCase {
     }
 
     public Cliente criarCliente(Cliente cliente) {
-        cliente.setId(UUID.randomUUID());
         return clienteRepository.salvar(cliente);
     }
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
@@ -126,6 +127,21 @@ public class ControllerExceptionHandler {
         standardError.setStatus(status.value());
         standardError.setError("Invalid Parameter");
         standardError.setMessage(methodArgumentTypeMismatchException.getMessage());
+        standardError.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(this.standardError);
+    }
+
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public ResponseEntity<StandardError> sqlIntegrityConstraintViolationException (
+            SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException,
+            HttpServletRequest request){
+
+        HttpStatus status = HttpStatus.CONFLICT;
+        standardError.setTimeStamp(Instant.now());
+        standardError.setStatus(status.value());
+        standardError.setError("Erro no banco de dados");
+        standardError.setMessage(sqlIntegrityConstraintViolationException.getMessage());
         standardError.setPath(request.getRequestURI());
 
         return ResponseEntity.status(status).body(this.standardError);
