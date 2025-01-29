@@ -4,44 +4,55 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.app
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.application.usecase.GerenciarClienteUseCase;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.adapters.mappers.ClienteMapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
     private final GerenciarClienteUseCase clienteUseCase;
     private final ClienteMapper clienteMapper;
 
+    @Autowired
     public ClienteController(GerenciarClienteUseCase clienteUseCase, ClienteMapper clienteMapper) {
         this.clienteUseCase = clienteUseCase;
         this.clienteMapper = clienteMapper;
     }
 
     @PostMapping
-    public ClienteDTO criarCliente(@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> criarCliente(@RequestBody ClienteDTO clienteDTO) {
         var cliente = clienteMapper.toEntity(clienteDTO);
         var clienteCriado = clienteUseCase.criarCliente(cliente);
-        return clienteMapper.toDTO(clienteCriado);
+        return ResponseEntity.status(201).body(clienteMapper.toDTO(clienteCriado));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteDTO> alterarCliente(@PathVariable UUID id, @RequestBody ClienteDTO clienteDTO) {
+        var cliente = clienteMapper.toEntity(clienteDTO);
+        var clienteCriado = clienteUseCase.alterarCliente(id, cliente);
+        return ResponseEntity.ok(clienteMapper.toDTO(clienteCriado));
     }
 
     @GetMapping("/{id}")
-    public ClienteDTO buscarCliente(@PathVariable UUID id) {
+    public ResponseEntity<ClienteDTO> buscarCliente(@PathVariable UUID id) {
         var cliente = clienteUseCase.buscarCliente(id);
-        return clienteMapper.toDTO(cliente);
+        return ResponseEntity.ok(clienteMapper.toDTO(cliente));
     }
 
     @GetMapping
-    public List<ClienteDTO> listarClientes() {
+    public ResponseEntity<List<ClienteDTO>> listarClientes() {
         var clientes = clienteUseCase.listarClientes();
-        return clienteMapper.toDTOList(clientes);
+        return ResponseEntity.ok(clienteMapper.toDTOList(clientes));
     }
 
     @DeleteMapping("/{id}")
-    public void excluirCliente(@PathVariable UUID id) {
+    public ResponseEntity<Void> excluirCliente(@PathVariable UUID id) {
         clienteUseCase.excluirCliente(id);
+        return ResponseEntity.noContent().build();
     }
 }
