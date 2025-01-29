@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface SpringDataClienteRepository extends JpaRepository<Cliente, UUID> {
+public interface SpringDataClienteRepositor extends JpaRepository<Cliente, UUID> {
 }
