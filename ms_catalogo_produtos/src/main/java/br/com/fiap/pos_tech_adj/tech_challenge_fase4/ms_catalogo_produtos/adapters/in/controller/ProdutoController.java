@@ -17,10 +17,7 @@ import java.util.List;
 @RequestMapping("/api/produtos")
 public class ProdutoController {
 
-    @Autowired
     private JobLauncher jobLauncher;
-
-    @Autowired
     private Job cargaProdutosJob;
 
     private final GerenciarProdutoUseCase gerenciarProdutoUseCase;
@@ -38,7 +35,7 @@ public class ProdutoController {
             jobLauncher.run(cargaProdutosJob, new JobParametersBuilder().toJobParameters());
             return ResponseEntity.ok("Carga de produtos iniciada com sucesso!");
         } catch (Exception e) {
-            throw new ControllerMessagingException(e.getMessage());
+            throw new ControllerMessagingException("Erro ao iniciar carga: " + e.getMessage());
         }
     }
 
