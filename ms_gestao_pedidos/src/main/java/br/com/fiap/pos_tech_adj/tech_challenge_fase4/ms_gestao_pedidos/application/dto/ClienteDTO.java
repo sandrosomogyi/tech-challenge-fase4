@@ -4,16 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-public class PedidoDTO {
+public class ClienteDTO {
     private UUID id;
-    private ClienteDTO cliente;
-    private List<ItemPedidoDTO> itens;
-    private LocalDateTime dataCriacao;
-    private Double total;
-    private String status;
+    private String nome;
+    private String email;
+    private String telefone;
 }

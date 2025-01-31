@@ -5,20 +5,21 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.re
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class PedidoRepositoryImpl implements PedidoRepository {
 
-    private final SpringDataPedidoRepository repository;
+    private final PedidoJpaRepository repository;
 
-    public PedidoRepositoryImpl(SpringDataPedidoRepository repository){ this.repository = repository; }
+    public PedidoRepositoryImpl(PedidoJpaRepository repository){ this.repository = repository; }
 
     @Override
-    public Pedido save(Pedido cliente) {
-        return repository.save(cliente);
+    public Pedido save(Pedido pedido) {
+        return repository.save(pedido);
     }
 
     @Override
-    public Optional<Pedido> findById(Long id) {
+    public Optional<Pedido> findById(UUID id) {
         return repository.findById(id);
     }
 
@@ -28,7 +29,7 @@ public class PedidoRepositoryImpl implements PedidoRepository {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         repository.deleteById(id);
     }
 }

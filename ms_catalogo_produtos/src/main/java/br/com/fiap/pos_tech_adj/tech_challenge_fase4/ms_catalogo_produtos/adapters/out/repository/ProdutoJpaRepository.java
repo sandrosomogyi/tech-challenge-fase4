@@ -4,5 +4,5 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_catalogo_produtos.domain
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SpringDataProdutoRepository extends JpaRepository<Produto, Long> {
+public interface ProdutoJpaRepository extends JpaRepository<Produto, Long> {
 }

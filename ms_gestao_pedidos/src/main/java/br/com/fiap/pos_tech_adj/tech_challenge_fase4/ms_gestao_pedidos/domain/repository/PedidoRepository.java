@@ -4,10 +4,11 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.en
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface PedidoRepository {
-    Pedido save(Pedido produto);
+    Pedido save(Pedido pedido);
     List<Pedido> findAll();
-    Optional<Pedido> findById(Long id);
-    void delete(Long id);
+    Optional<Pedido> findById(UUID id);
+    void delete(UUID id);
 }
