@@ -10,9 +10,9 @@ import java.util.Optional;
 @Repository
 public class ProdutoRepositoryImpl implements ProdutoRepository {
 
-    private final SpringDataProdutoRepository repository;
+    private final ProdutoJpaRepository repository;
 
-    public ProdutoRepositoryImpl(SpringDataProdutoRepository repository) {
+    public ProdutoRepositoryImpl(ProdutoJpaRepository repository) {
         this.repository = repository;
     }
 
