@@ -12,9 +12,9 @@ import java.util.UUID;
 @Repository
 public class ClienteRepositoryImpl implements ClienteRepository {
 
-    private final SpringDataClienteRepository repository;
+    private final ClienteJpaRepository repository;
 
-    public ClienteRepositoryImpl(SpringDataClienteRepository repository) {
+    public ClienteRepositoryImpl(ClienteJpaRepository repository) {
         this.repository = repository;
     }
 
