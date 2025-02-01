@@ -1,7 +1,6 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +12,22 @@ import java.util.UUID;
 @Table(name = "tb_itemPedido")
 @Data @NoArgsConstructor @AllArgsConstructor
 public class ItemPedido {
+
+    @Id
+    @GeneratedValue
     private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "produto_id", referencedColumnName = "id")
     private Produto produto;
-    private UUID pedidoId;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id")
+    private Pedido pedido;
     private int quantidade;
 
     public BigDecimal getTotal() {
-        return produto.getPrecoUnitario().multiply(BigDecimal.valueOf(quantidade));
+        return produto.getPreco().multiply(new BigDecimal(quantidade));
     }
+
 }

@@ -1,15 +1,19 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Data @NoArgsConstructor @AllArgsConstructor
+@Table(name = "tb_cliente")
 public class Cliente {
+    @Id
     private UUID id;
     private String nome;
     private String email;

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -14,6 +15,6 @@ public class PedidoDTO {
     private ClienteDTO cliente;
     private List<ItemPedidoDTO> itens;
     private LocalDateTime dataCriacao;
-    private Double total;
+    private BigDecimal total;
     private String status;
 }

@@ -9,7 +9,7 @@ public class ItemPedidoMapper {
         return new ItemPedido(
                 dto.getId(),
                 ProdutoMapper.toEntity(dto.getProduto()),
-                dto.getPedidoId(),
+                PedidoMapper.toEntity(dto.getPedidoDTO()),
                 dto.getQuantidade()
         );
     }
@@ -18,7 +18,7 @@ public class ItemPedidoMapper {
         return new ItemPedidoDTO(
                 entity.getId(),
                 ProdutoMapper.toDTO(entity.getProduto()),
-                entity.getPedidoId(),
+                PedidoMapper.toDTO(entity.getPedido()),
                 entity.getQuantidade()
         );
     }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -17,12 +18,15 @@ public class Pedido {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens;
     private LocalDateTime dataCriacao;
-    private Double total;
+    private BigDecimal total;
     private PedidoStatus status;
 
     public Pedido(Cliente cliente, List<ItemPedido> itens) {

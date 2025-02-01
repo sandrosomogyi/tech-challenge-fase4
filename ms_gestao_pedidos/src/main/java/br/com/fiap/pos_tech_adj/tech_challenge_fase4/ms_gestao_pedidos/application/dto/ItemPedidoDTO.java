@@ -11,11 +11,11 @@ import java.util.UUID;
 public class ItemPedidoDTO {
     private UUID id;
     private ProdutoDTO produto;
-    private UUID pedidoId;
+    private PedidoDTO pedidoDTO;
     private int quantidade;
 
     // Método para calcular o total dinamicamente (se necessário)
     public BigDecimal getTotal() {
-        return produto.getPrecoUnitario().multiply(BigDecimal.valueOf(quantidade));
+        return produto.getPreco().multiply(new BigDecimal(quantidade));
     }
 }

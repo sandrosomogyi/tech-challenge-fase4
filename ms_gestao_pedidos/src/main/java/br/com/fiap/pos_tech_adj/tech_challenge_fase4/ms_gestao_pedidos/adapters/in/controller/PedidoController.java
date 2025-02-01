@@ -1,6 +1,7 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.in.controller;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.PedidoDTO;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.AtualizarPedidoUseCase;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.CriarPedidoUseCase;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.ConsultarPedidoUseCase;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.mappers.PedidoMapper;
@@ -20,13 +21,16 @@ public class PedidoController {
     private final CriarPedidoUseCase criarPedidoUseCase;
     private final ConsultarPedidoUseCase consultarPedidoUseCase;
     private final DeletarPedidoUseCase deletarPedidoUseCase;
+    private final AtualizarPedidoUseCase atualizarPedidoUseCase;
 
     public PedidoController(CriarPedidoUseCase criarPedidoUseCase,
                             ConsultarPedidoUseCase consultarPedidoUseCase,
-                            DeletarPedidoUseCase deletarPedidoUseCase) {
+                            DeletarPedidoUseCase deletarPedidoUseCase,
+                            AtualizarPedidoUseCase atualizarPedidoUseCase) {
         this.criarPedidoUseCase = criarPedidoUseCase;
         this.consultarPedidoUseCase = consultarPedidoUseCase;
         this.deletarPedidoUseCase = deletarPedidoUseCase;
+        this.atualizarPedidoUseCase = atualizarPedidoUseCase;
     }
 
     // Endpoint para criar pedido
@@ -48,6 +52,13 @@ public class PedidoController {
         return consultarPedidoUseCase.executarTodos().stream()
                 .map(PedidoMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @PutMapping("/{pedidoId}")
+    public ResponseEntity<PedidoDTO> atualizarPedido(@PathVariable UUID pedidoId,
+                                                     @RequestBody PedidoDTO pedidoDTOAtualizado) {
+        PedidoDTO pedidoDTO = PedidoMapper.toDTO(atualizarPedidoUseCase.executar(pedidoId, PedidoMapper.toEntity(pedidoDTOAtualizado)));
+        return ResponseEntity.ok(pedidoDTO);
     }
 
     @DeleteMapping("/{pedidoId}")

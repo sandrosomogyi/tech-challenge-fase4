@@ -10,7 +10,9 @@ public class ProdutoMapper {
         return new Produto(
                 dto.getId(),
                 dto.getNome(),
-                dto.getPrecoUnitario()
+                dto.getDescricao(),
+                dto.getPreco(),
+                dto.getQuantidadeEstoque()
         );
     }
 
@@ -18,7 +20,9 @@ public class ProdutoMapper {
         return new ProdutoDTO(
                 entity.getId(),
                 entity.getNome(),
-                entity.getPrecoUnitario()
+                entity.getDescricao(),
+                entity.getPreco(),
+                entity.getQuantidadeEstoque()
         );
     }
 }

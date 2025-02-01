@@ -1,5 +1,6 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase;
 
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.out.repository.PedidoJpaRepository;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.Pedido;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,15 @@ import java.util.UUID;
 @Service
 public class ConsultarPedidoUseCase {
 
-    private final PedidoRepository pedidoRepository;
+    private final PedidoJpaRepository pedidoJpaRepository;
 
-    public ConsultarPedidoUseCase(PedidoRepository pedidoRepository) {
-        this.pedidoRepository = pedidoRepository;
+    public ConsultarPedidoUseCase(PedidoJpaRepository pedidoJpaRepository) {
+        this.pedidoJpaRepository = pedidoJpaRepository;
     }
 
     public Pedido executar(UUID id) {
         // Busca o pedido no banco de dados por ID
-        Optional<Pedido> pedido = pedidoRepository.findById(id);
+        Optional<Pedido> pedido = pedidoJpaRepository.findById(id);
 
         // Lógica de tratamento se o pedido não for encontrado (por exemplo, lançar uma exceção)
         return pedido.orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
@@ -27,6 +28,6 @@ public class ConsultarPedidoUseCase {
 
     public List<Pedido> executarTodos() {
         // Recupera todos os pedidos
-        return pedidoRepository.findAll();
+        return pedidoJpaRepository.findAll();
     }
 }

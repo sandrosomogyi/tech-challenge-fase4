@@ -10,5 +10,7 @@ import java.math.BigDecimal;
 public class ProdutoDTO {
     private Long id;
     private String nome;
-    private Double precoUnitario;
+    private String descricao;
+    private BigDecimal preco;
+    private Integer quantidadeEstoque;
 }
