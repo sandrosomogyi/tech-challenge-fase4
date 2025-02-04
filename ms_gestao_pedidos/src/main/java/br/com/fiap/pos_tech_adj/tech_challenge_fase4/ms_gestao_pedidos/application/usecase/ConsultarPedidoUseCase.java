@@ -2,6 +2,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.applicat
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.out.repository.PedidoJpaRepository;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.Pedido;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.exceptions.ControllerMessagingException;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class ConsultarPedidoUseCase {
         Optional<Pedido> pedido = pedidoJpaRepository.findById(id);
 
         // Lógica de tratamento se o pedido não for encontrado (por exemplo, lançar uma exceção)
-        return pedido.orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+        return pedido.orElseThrow(() -> new ControllerMessagingException("Pedido não encontrado"));
     }
 
     public List<Pedido> executarTodos() {

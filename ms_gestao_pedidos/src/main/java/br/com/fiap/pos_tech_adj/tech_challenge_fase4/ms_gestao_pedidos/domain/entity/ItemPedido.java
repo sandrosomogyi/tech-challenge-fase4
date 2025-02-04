@@ -1,5 +1,6 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,17 +18,14 @@ public class ItemPedido {
     @GeneratedValue
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "produto_id", referencedColumnName = "id")
-    private Produto produto;
+    @Column(name = "produto_id")
+    private Long produtoId;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", referencedColumnName = "id")
+    @JsonBackReference  // Impede recursão infinita na serialização
     private Pedido pedido;
+
     private int quantidade;
-
-    public BigDecimal getTotal() {
-        return produto.getPreco().multiply(new BigDecimal(quantidade));
-    }
-
+    private BigDecimal total;
 }

@@ -2,8 +2,9 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.ProdutoDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.Produto;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class ProdutoMapper {
 
     public static Produto toEntity(ProdutoDTO dto) {

@@ -1,73 +1,65 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.in.controller;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.PedidoDTO;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.AtualizarPedidoUseCase;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.CriarPedidoUseCase;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.ConsultarPedidoUseCase;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.*;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.mappers.PedidoMapper;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.DeletarPedidoUseCase;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/api/pedidos")
 public class PedidoController {
 
     private final CriarPedidoUseCase criarPedidoUseCase;
     private final ConsultarPedidoUseCase consultarPedidoUseCase;
     private final DeletarPedidoUseCase deletarPedidoUseCase;
-    private final AtualizarPedidoUseCase atualizarPedidoUseCase;
+    private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
+    private final PedidoMapper pedidoMapper;
 
+    @Autowired
     public PedidoController(CriarPedidoUseCase criarPedidoUseCase,
                             ConsultarPedidoUseCase consultarPedidoUseCase,
                             DeletarPedidoUseCase deletarPedidoUseCase,
-                            AtualizarPedidoUseCase atualizarPedidoUseCase) {
+                            AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase,
+                            PedidoMapper pedidoMapper) {
         this.criarPedidoUseCase = criarPedidoUseCase;
         this.consultarPedidoUseCase = consultarPedidoUseCase;
         this.deletarPedidoUseCase = deletarPedidoUseCase;
-        this.atualizarPedidoUseCase = atualizarPedidoUseCase;
+        this.atualizarStatusPedidoUseCase = atualizarStatusPedidoUseCase;
+        this.pedidoMapper = pedidoMapper;
     }
 
-    // Endpoint para criar pedido
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public PedidoDTO criarPedido(@RequestBody PedidoDTO pedidoDTO) {
-        return PedidoMapper.toDTO(criarPedidoUseCase.executar(PedidoMapper.toEntity(pedidoDTO)));
+    public ResponseEntity<PedidoDTO> criarPedido(@RequestBody PedidoDTO pedidoDTO) {
+        var pedidoCriado = criarPedidoUseCase.executar(pedidoDTO);
+        return ResponseEntity.status(201).body(pedidoMapper.toDTO(pedidoCriado));
     }
 
-    // Endpoint para consultar pedidos por ID
+    @PutMapping("/{id}")
+    public ResponseEntity<PedidoDTO> atualizarStatusPedido(@PathVariable UUID id, @RequestParam("status") String status) {
+        var pedidoAtualizado = atualizarStatusPedidoUseCase.executar(id, status);
+        return ResponseEntity.ok(pedidoMapper.toDTO(pedidoAtualizado));
+    }
+
     @GetMapping("/{id}")
-    public PedidoDTO consultarPedido(@PathVariable UUID id) {
-        return PedidoMapper.toDTO(consultarPedidoUseCase.executar(id));
+    public ResponseEntity<PedidoDTO> consultarPedido(@PathVariable UUID id) {
+        var pedido = consultarPedidoUseCase.executar(id);
+        return ResponseEntity.ok(pedidoMapper.toDTO(pedido));
     }
 
-    // Endpoint para listar todos os pedidos
     @GetMapping
-    public List<PedidoDTO> listarPedidos() {
-        return consultarPedidoUseCase.executarTodos().stream()
-                .map(PedidoMapper::toDTO)
-                .collect(Collectors.toList());
+    public ResponseEntity<List<PedidoDTO>> listarPedidos() {
+        var pedidos = consultarPedidoUseCase.executarTodos();
+        return ResponseEntity.ok(pedidos.stream().map(PedidoMapper::toDTO).collect(Collectors.toList()));
     }
 
-    @PutMapping("/{pedidoId}")
-    public ResponseEntity<PedidoDTO> atualizarPedido(@PathVariable UUID pedidoId,
-                                                     @RequestBody PedidoDTO pedidoDTOAtualizado) {
-        PedidoDTO pedidoDTO = PedidoMapper.toDTO(atualizarPedidoUseCase.executar(pedidoId, PedidoMapper.toEntity(pedidoDTOAtualizado)));
-        return ResponseEntity.ok(pedidoDTO);
-    }
-
-    @DeleteMapping("/{pedidoId}")
-    public ResponseEntity<Void> deletarPedido(@PathVariable UUID pedidoId) {
-        try {
-            deletarPedidoUseCase.deletarPedido(pedidoId);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPedido(@PathVariable UUID id) {
+        deletarPedidoUseCase.deletarPedido(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -2,24 +2,27 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.ItemPedidoDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.ItemPedido;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.Pedido;
 
 public class ItemPedidoMapper {
 
     public static ItemPedido toEntity(ItemPedidoDTO dto) {
-        return new ItemPedido(
-                dto.getId(),
-                ProdutoMapper.toEntity(dto.getProduto()),
-                PedidoMapper.toEntity(dto.getPedidoDTO()),
-                dto.getQuantidade()
-        );
+        ItemPedido item = new ItemPedido();
+        item.setId(dto.getId());
+        item.setProdutoId(dto.getProdutoId());
+        item.setPedido(new Pedido());
+        item.setQuantidade(dto.getQuantidade());
+        item.setTotal(dto.getTotal());
+
+        return item;
     }
 
     public static ItemPedidoDTO toDTO(ItemPedido entity) {
         return new ItemPedidoDTO(
                 entity.getId(),
-                ProdutoMapper.toDTO(entity.getProduto()),
-                PedidoMapper.toDTO(entity.getPedido()),
-                entity.getQuantidade()
+                entity.getProdutoId(),
+                entity.getQuantidade(),
+                entity.getTotal()
         );
     }
 }

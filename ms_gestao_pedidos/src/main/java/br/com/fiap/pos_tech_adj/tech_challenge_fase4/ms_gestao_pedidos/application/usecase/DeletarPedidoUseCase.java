@@ -2,6 +2,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.applicat
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.out.repository.ItemPedidoJpaRepository;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.out.repository.PedidoJpaRepository;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.exceptions.ControllerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class DeletarPedidoUseCase {
     public void deletarPedido(UUID pedidoId) {
         // Verificar se o pedido existe
         var pedido = pedidoJpaRepository.findById(pedidoId)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+                .orElseThrow(() -> new ControllerNotFoundException("Pedido não encontrado"));
 
         // Deletar todos os itens relacionados ao pedido
         itemPedidoJpaRepository.deleteByPedidoId(pedidoId);

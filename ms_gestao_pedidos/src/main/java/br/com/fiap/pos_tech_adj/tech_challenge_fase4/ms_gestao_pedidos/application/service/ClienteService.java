@@ -9,7 +9,7 @@ import java.util.UUID;
 public class ClienteService {
 
     private final RestTemplate restTemplate;
-    private final String clienteServiceUrl = "http://localhost:8082/clientes"; // URL do microserviço de clientes
+    private final String clienteServiceUrl = "http://localhost:8082/api/clientes"; // URL do microserviço de clientes
 
     public ClienteService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;

@@ -146,4 +146,19 @@ public class ControllerExceptionHandler {
 
         return ResponseEntity.status(status).body(this.standardError);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<StandardError> genericException(
+            Exception ex, HttpServletRequest request) {
+
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        StandardError standardError = new StandardError();
+        standardError.setTimeStamp(Instant.now());
+        standardError.setStatus(status.value());
+        standardError.setError("Erro interno no servidor");
+        standardError.setMessage(ex.getMessage());
+        standardError.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(standardError);
+    }
 }

@@ -10,12 +10,8 @@ import java.util.UUID;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class ItemPedidoDTO {
     private UUID id;
-    private ProdutoDTO produto;
-    private PedidoDTO pedidoDTO;
-    private int quantidade;
+    private Long produtoId;
 
-    // Método para calcular o total dinamicamente (se necessário)
-    public BigDecimal getTotal() {
-        return produto.getPreco().multiply(new BigDecimal(quantidade));
-    }
+    private int quantidade;
+    private BigDecimal total;
 }
