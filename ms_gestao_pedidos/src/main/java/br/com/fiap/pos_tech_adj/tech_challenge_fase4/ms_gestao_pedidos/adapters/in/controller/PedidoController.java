@@ -16,19 +16,16 @@ public class PedidoController {
 
     private final CriarPedidoUseCase criarPedidoUseCase;
     private final ConsultarPedidoUseCase consultarPedidoUseCase;
-    private final DeletarPedidoUseCase deletarPedidoUseCase;
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
     private final PedidoMapper pedidoMapper;
 
     @Autowired
     public PedidoController(CriarPedidoUseCase criarPedidoUseCase,
                             ConsultarPedidoUseCase consultarPedidoUseCase,
-                            DeletarPedidoUseCase deletarPedidoUseCase,
                             AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase,
                             PedidoMapper pedidoMapper) {
         this.criarPedidoUseCase = criarPedidoUseCase;
         this.consultarPedidoUseCase = consultarPedidoUseCase;
-        this.deletarPedidoUseCase = deletarPedidoUseCase;
         this.atualizarStatusPedidoUseCase = atualizarStatusPedidoUseCase;
         this.pedidoMapper = pedidoMapper;
     }
@@ -55,11 +52,5 @@ public class PedidoController {
     public ResponseEntity<List<PedidoDTO>> listarPedidos() {
         var pedidos = consultarPedidoUseCase.executarTodos();
         return ResponseEntity.ok(pedidos.stream().map(PedidoMapper::toDTO).collect(Collectors.toList()));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPedido(@PathVariable UUID id) {
-        deletarPedidoUseCase.deletarPedido(id);
-        return ResponseEntity.noContent().build();
     }
 }

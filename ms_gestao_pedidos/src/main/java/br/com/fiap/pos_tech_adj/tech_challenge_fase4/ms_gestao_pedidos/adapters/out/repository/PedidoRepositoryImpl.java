@@ -2,6 +2,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.Pedido;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.repository.PedidoRepository;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.infra.database.repository.jpa.PedidoJpaRepository;
 
 import java.util.List;
 import java.util.Optional;

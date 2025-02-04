@@ -3,6 +3,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.ad
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.domain.entity.Cliente;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.domain.repository.ClienteRepository;
 
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.infra.database.repository.jpa.ClienteJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

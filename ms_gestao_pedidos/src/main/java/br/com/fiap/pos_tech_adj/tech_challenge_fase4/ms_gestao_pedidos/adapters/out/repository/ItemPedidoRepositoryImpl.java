@@ -2,6 +2,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.ItemPedido;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.repository.ItemPedidoRepository;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.infra.database.repository.jpa.ItemPedidoJpaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,11 +25,6 @@ public class ItemPedidoRepositoryImpl implements ItemPedidoRepository {
     }
 
     @Override
-    public List<ItemPedido> findByPedidoId(UUID pedidoId) {
-        return repository.findByPedidoId(pedidoId);
-    }
-
-    @Override
     public List<ItemPedido> findAll() {
         return repository.findAll();
     }
@@ -36,11 +32,6 @@ public class ItemPedidoRepositoryImpl implements ItemPedidoRepository {
     @Override
     public void delete(UUID id) {
         repository.deleteById(id);
-    }
-
-    @Override
-    public void deleteByPedidoId(UUID pedidoID) {
-        repository.deleteByPedidoId(pedidoID);
     }
 
 }

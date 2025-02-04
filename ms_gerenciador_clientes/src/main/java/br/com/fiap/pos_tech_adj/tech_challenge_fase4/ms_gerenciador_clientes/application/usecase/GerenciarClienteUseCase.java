@@ -27,6 +27,8 @@ public class GerenciarClienteUseCase {
         savedCliente.setNome(cliente.getNome());
         savedCliente.setEmail(cliente.getEmail());
         savedCliente.setTelefone(cliente.getTelefone());
+        savedCliente.setEndereco(cliente.getEndereco());
+        savedCliente.setCep(cliente.getCep());
 
         return clienteRepository.salvar(savedCliente);
     }

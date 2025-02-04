@@ -10,7 +10,5 @@ public interface ItemPedidoRepository {
     ItemPedido save(ItemPedido itemPedido);
     List<ItemPedido> findAll();
     Optional<ItemPedido> findById(UUID id);
-    List<ItemPedido> findByPedidoId(UUID id);
     void delete(UUID id);
-    void deleteByPedidoId(UUID pedidoID);
 }

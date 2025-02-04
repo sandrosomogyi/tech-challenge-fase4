@@ -10,7 +10,9 @@ public class ClienteMapper {
                 dto.getId(),
                 dto.getNome(),
                 dto.getEmail(),
-                dto.getTelefone()
+                dto.getTelefone(),
+                dto.getEndereco(),
+                dto.getCep()
         );
     }
 
@@ -19,7 +21,9 @@ public class ClienteMapper {
                 entity.getId(),
                 entity.getNome(),
                 entity.getEmail(),
-                entity.getTelefone()
+                entity.getTelefone(),
+                entity.getEndereco(),
+                entity.getCep()
         );
     }
 }
