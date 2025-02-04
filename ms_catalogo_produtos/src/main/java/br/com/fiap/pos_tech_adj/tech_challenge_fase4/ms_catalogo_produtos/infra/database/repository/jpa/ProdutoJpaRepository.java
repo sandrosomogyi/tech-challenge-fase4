@@ -1,4 +1,4 @@
-package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_catalogo_produtos.adapters.out.repository;
+package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_catalogo_produtos.infra.database.repository.jpa;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_catalogo_produtos.domain.entity.Produto;
 

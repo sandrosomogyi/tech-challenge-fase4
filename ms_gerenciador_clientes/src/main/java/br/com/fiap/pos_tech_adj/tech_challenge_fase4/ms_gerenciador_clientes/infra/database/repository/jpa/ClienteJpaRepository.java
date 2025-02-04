@@ -1,4 +1,4 @@
-package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.adapters.out.repository;
+package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.infra.database.repository.jpa;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.domain.entity.Cliente;
 
