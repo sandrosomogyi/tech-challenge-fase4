@@ -50,6 +50,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Banco de dados MySQL -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>9.2.0</version>
+		</dependency>
+
 		<!-- SpringDoc -->
 		<dependency>
 			<groupId>org.springdoc</groupId>

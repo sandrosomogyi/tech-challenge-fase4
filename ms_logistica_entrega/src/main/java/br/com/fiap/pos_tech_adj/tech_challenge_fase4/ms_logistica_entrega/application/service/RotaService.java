@@ -1,12 +1,10 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.service;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.Rota;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.repository.RotaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -14,11 +12,9 @@ public class RotaService {
 
     private static final String OSRM_API_URL = "http://router.project-osrm.org/route/v1/driving/";
 
-    private final RotaRepository rotaRepository;
     private final RestTemplate restTemplate;
 
-    public RotaService(RotaRepository rotaRepository, RestTemplate restTemplate) {
-        this.rotaRepository = rotaRepository;
+    public RotaService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

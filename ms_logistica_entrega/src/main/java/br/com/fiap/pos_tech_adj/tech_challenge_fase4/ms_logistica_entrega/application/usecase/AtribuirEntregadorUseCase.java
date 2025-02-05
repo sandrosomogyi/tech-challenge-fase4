@@ -1,22 +1,23 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase;
 
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.out.repository.EntregaRepositoryImpl;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.out.repository.EntregadorRepositoryImpl;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.mappers.EntregaMapper;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.Entrega;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.StatusEntrega;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.exceptions.ControllerNotFoundException;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.repository.EntregaRepository;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.repository.EntregadorRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class AtribuirEntregadorUseCase {
 
-    private final EntregaRepository entregaRepository;
-    private final EntregadorRepository entregadorRepository;
+    private final EntregaRepositoryImpl entregaRepository;
+    private final EntregadorRepositoryImpl entregadorRepository;
 
-    public AtribuirEntregadorUseCase(EntregaRepository entregaRepository, EntregadorRepository entregadorRepository) {
+    public AtribuirEntregadorUseCase(EntregaRepositoryImpl entregaRepository, EntregadorRepositoryImpl entregadorRepository) {
         this.entregaRepository = entregaRepository;
         this.entregadorRepository = entregadorRepository;
     }

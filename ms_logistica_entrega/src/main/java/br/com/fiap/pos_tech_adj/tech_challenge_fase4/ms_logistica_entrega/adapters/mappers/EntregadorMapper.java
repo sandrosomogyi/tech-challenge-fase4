@@ -2,7 +2,9 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapt
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregadorDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.Entregador;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EntregadorMapper {
 
     public static Entregador toEntity(EntregadorDTO dto) {

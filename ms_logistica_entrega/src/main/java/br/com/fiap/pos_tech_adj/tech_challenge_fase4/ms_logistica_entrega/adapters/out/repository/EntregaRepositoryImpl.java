@@ -4,11 +4,13 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.StatusEntrega;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.repository.EntregaRepository;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.infra.database.repository.jpa.EntregaJpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public class EntregaRepositoryImpl implements EntregaRepository {
 
     private final EntregaJpaRepository repository;

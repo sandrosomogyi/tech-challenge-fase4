@@ -1,18 +1,18 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase;
 
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.out.repository.EntregaRepositoryImpl;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.mappers.EntregaMapper;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.Entrega;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.StatusEntrega;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.repository.EntregaRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.UUID;
 
+@Service
 public class CriarEntregaUseCase {
 
-    private final EntregaRepository entregaRepository;
+    private final EntregaRepositoryImpl entregaRepository;
 
-    public CriarEntregaUseCase(EntregaRepository entregaRepository) {
+    public CriarEntregaUseCase(EntregaRepositoryImpl entregaRepository) {
         this.entregaRepository = entregaRepository;
     }
 

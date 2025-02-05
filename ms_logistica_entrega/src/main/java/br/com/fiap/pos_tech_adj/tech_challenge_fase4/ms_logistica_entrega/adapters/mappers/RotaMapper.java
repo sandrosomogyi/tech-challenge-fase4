@@ -2,7 +2,9 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapt
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.RotaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.Rota;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RotaMapper {
 
     public static Rota toEntity(RotaDTO dto) {
