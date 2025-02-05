@@ -8,7 +8,8 @@ import java.util.UUID;
 
 public interface RotaRepository {
     Optional<Rota> findById(UUID id);
-    List<Rota> findByAll();
+    List<Rota> findAll();
+    List<Rota> findByEntregaId(UUID entregaId);
     Rota save(Rota rota);
     void deleteById(UUID id);
 }

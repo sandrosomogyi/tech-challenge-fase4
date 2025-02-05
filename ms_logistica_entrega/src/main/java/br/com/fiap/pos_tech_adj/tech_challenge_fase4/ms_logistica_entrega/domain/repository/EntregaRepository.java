@@ -11,5 +11,4 @@ public interface EntregaRepository {
     Optional<Entrega> findById(UUID id);
     List<Entrega> findByStatus(StatusEntrega status);
     Entrega save(Entrega entrega);
-    void updateStatus(UUID id, StatusEntrega status);
 }

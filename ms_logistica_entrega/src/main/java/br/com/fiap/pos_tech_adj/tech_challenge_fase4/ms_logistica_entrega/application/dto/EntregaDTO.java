@@ -4,6 +4,8 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -13,7 +15,9 @@ public class EntregaDTO {
     private UUID id;
     private UUID pedidoId;
     private UUID entregadorId;
-    private String enderecoEntrega;
-    private String cep;
+    private String enderecoDestino;
     private StatusEntrega status;
+    private LocalDateTime dataHoraPrevista;
+    private LocalDateTime dataHoraConclusao;
+    private String codigoRastreamento;
 }

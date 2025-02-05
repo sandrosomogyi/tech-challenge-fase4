@@ -18,10 +18,19 @@ public class Entrega {
     private UUID entregadorId;
     private StatusEntrega status;
     private String enderecoDestino;
-    private String cep;
     private LocalDateTime dataHoraPrevista;
     private LocalDateTime dataHoraConclusao;
     private String codigoRastreamento;
+
+    public Entrega(UUID pedidoId, UUID entregadorId, String enderecoDestino, LocalDateTime dataHoraPrevista) {
+        this.id = UUID.randomUUID();
+        this.pedidoId = pedidoId;
+        this.entregadorId = entregadorId;
+        this.status = StatusEntrega.PENDENTE;
+        this.enderecoDestino = enderecoDestino;
+        this.dataHoraPrevista = dataHoraPrevista;
+        this.codigoRastreamento = UUID.randomUUID().toString();
+    }
 
     public void atualizarStatus(StatusEntrega novoStatus) {
         this.status = novoStatus;

@@ -13,6 +13,6 @@ public class RotaDTO {
     private UUID entregaId;
     private String pontoPartida;
     private String destino;
-    private double distanciaKm;
-    private int tempoEstimadoMinutos;
+    private double distancia;
+    private double tempoEstimado;
 }
