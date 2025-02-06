@@ -9,10 +9,14 @@ public class EntregaMapper {
 
     public static Entrega toEntity(EntregaDTO dto) {
         return new Entrega(
+                dto.getId(),
                 dto.getPedidoId(),
                 dto.getEntregadorId(),
                 dto.getEnderecoDestino(),
-                dto.getDataHoraPrevista()
+                dto.getStatus(),
+                dto.getDataHoraPrevista(),
+                dto.getDataHoraConclusao(),
+                dto.getCodigoRastreamento()
         );
     }
 

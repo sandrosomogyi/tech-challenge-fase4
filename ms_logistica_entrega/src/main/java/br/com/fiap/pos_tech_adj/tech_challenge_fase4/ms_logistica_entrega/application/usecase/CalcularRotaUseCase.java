@@ -29,7 +29,7 @@ public class CalcularRotaUseCase {
             throw new ControllerMessagingException("Não foi possivel calcular a rota.");
         }
 
-        var rotaSalva = rotaRepository.save(rotaCalculada);
+        Rota rotaSalva = rotaRepository.save(rotaCalculada);
 
         return RotaMapper.toDTO(rotaSalva);
     }

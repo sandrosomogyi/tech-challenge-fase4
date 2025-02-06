@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -24,12 +25,15 @@ public class RotaController {
     }
 
     @PostMapping("/calcular")
-    public ResponseEntity<RotaDTO> calcularRota(@RequestParam UUID entregaId,
-                                                @RequestParam String origem,
-                                                @RequestParam String destino) {
+    public ResponseEntity<RotaDTO> calcularRota(@RequestBody Map<String, String> params) {
+        UUID entregaId = UUID.fromString(params.get("entregaId"));
+        String origem = params.get("origem");
+        String destino = params.get("destino");
+
         RotaDTO rotaDTO = calcularRotaUseCase.calcularMelhorRota(entregaId, origem, destino);
         return ResponseEntity.ok(rotaDTO);
     }
+
 
     @GetMapping("/rastrear/{entregaId}")
     public ResponseEntity<List<RotaDTO>> rastrearEntrega(@PathVariable UUID entregaId) {

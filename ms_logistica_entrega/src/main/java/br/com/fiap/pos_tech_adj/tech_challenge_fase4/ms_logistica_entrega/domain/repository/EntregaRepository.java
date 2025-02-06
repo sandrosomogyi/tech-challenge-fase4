@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface EntregaRepository {
     Optional<Entrega> findById(UUID id);
+    List<Entrega> findAll();
     List<Entrega> findByStatus(StatusEntrega status);
     Entrega save(Entrega entrega);
 }

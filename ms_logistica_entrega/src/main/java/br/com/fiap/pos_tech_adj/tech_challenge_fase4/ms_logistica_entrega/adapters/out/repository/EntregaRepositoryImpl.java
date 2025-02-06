@@ -23,6 +23,11 @@ public class EntregaRepositoryImpl implements EntregaRepository {
     }
 
     @Override
+    public List<Entrega> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public List<Entrega> findByStatus(StatusEntrega status) {
         return repository.findByStatus(status);
     }
