@@ -14,7 +14,8 @@ public class RotaMapper {
                 dto.getPontoPartida(),
                 dto.getDestino(),
                 dto.getDistancia(),
-                dto.getTempoEstimado()
+                dto.getTempoEstimado(),
+                dto.getDataSaida()
         );
     }
 
@@ -25,7 +26,8 @@ public class RotaMapper {
                 entity.getPontoPartida(),
                 entity.getDestino(),
                 entity.getDistancia(),
-                entity.getTempoEstimado()
+                entity.getTempoEstimado(),
+                entity.getDataSaida()
         );
     }
 }

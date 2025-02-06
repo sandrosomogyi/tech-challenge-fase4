@@ -33,7 +33,17 @@ public class EntregaRepositoryImpl implements EntregaRepository {
     }
 
     @Override
+    public Optional<Entrega> findByCodigoRastreio(String id) {
+        return repository.findByCodigoRastreio(id);
+    }
+
+    @Override
     public Entrega save(Entrega entrega) {
         return repository.save(entrega);
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+        repository.deleteById(id);
     }
 }

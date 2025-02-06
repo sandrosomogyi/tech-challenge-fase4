@@ -16,7 +16,7 @@ public class EntregaMapper {
                 dto.getStatus(),
                 dto.getDataHoraPrevista(),
                 dto.getDataHoraConclusao(),
-                dto.getCodigoRastreamento()
+                dto.getCodigoRastreio()
         );
     }
 
@@ -29,7 +29,7 @@ public class EntregaMapper {
                 entity.getStatus(),
                 entity.getDataHoraPrevista(),
                 entity.getDataHoraConclusao(),
-                entity.getCodigoRastreamento()
+                entity.getCodigoRastreio()
         );
     }
 }

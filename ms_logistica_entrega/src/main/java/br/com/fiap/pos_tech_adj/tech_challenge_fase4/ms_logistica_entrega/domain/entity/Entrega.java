@@ -22,7 +22,8 @@ public class Entrega {
     private StatusEntrega status;
     private LocalDateTime dataHoraPrevista;
     private LocalDateTime dataHoraConclusao;
-    private String codigoRastreamento;
+    @Column(unique = true)
+    private String codigoRastreio;
 
     public void atualizarStatus(StatusEntrega novoStatus) {
         this.status = novoStatus;

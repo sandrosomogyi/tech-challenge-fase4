@@ -3,6 +3,8 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.appli
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -15,4 +17,5 @@ public class RotaDTO {
     private String destino;
     private double distancia;
     private double tempoEstimado;
+    private LocalDateTime dataSaida;
 }

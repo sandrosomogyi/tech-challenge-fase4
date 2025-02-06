@@ -9,6 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -58,7 +59,8 @@ public class RotaService {
                     origem,
                     destino,
                     distanciaKM,
-                    tempoMinutos
+                    tempoMinutos,
+                    LocalDateTime.now()
             );
 
             // Retorna a rota calculada

@@ -50,23 +50,27 @@ public class AtualizarStatusPedidoUseCase {
                     throw new ControllerMessagingException("Pedido não pode voltar de EM_TRANSITO para PENDENTE.");
                 }
 
-                ClienteDTO cliente = clienteService.getClienteById(pedidoExistente.getClienteId());
+                if ( status.equals("CONCLUIR_PEDIDO")){
+                    status = "CONCLUIDO";
+                }else {
+                    ClienteDTO cliente = clienteService.getClienteById(pedidoExistente.getClienteId());
 
-                EntregaDTO entrega = new EntregaDTO(
-                        UUID.randomUUID(),
-                        pedidoExistente.getId(),
-                        null,
-                        cliente.getEndereco(),
-                        "PENDENTE",
-                        LocalDateTime.now().plusDays(14),
-                        null,
-                        UUID.randomUUID().toString()
-                        );
+                    EntregaDTO entrega = new EntregaDTO(
+                            UUID.randomUUID(),
+                            pedidoExistente.getId(),
+                            null,
+                            cliente.getEndereco(),
+                            "PENDENTE",
+                            LocalDateTime.now().plusDays(14),
+                            null,
+                            UUID.randomUUID().toString()
+                    );
 
-                EntregaDTO entregaSalva = entregaService.criarEntrega(entrega);
+                    EntregaDTO entregaSalva = entregaService.criarEntrega(entrega);
 
-                if (entregaSalva.getId().toString().isEmpty()){
-                    throw new ControllerMessagingException("Problema ao criar entrega.");
+                    if (entregaSalva.getId().toString().isEmpty()) {
+                        throw new ControllerMessagingException("Problema ao criar entrega.");
+                    }
                 }
 
                 break;

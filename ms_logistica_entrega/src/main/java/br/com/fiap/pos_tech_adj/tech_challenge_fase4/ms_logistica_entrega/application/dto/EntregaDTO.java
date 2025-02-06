@@ -19,5 +19,5 @@ public class EntregaDTO {
     private StatusEntrega status;
     private LocalDateTime dataHoraPrevista;
     private LocalDateTime dataHoraConclusao;
-    private String codigoRastreamento;
+    private String codigoRastreio;
 }

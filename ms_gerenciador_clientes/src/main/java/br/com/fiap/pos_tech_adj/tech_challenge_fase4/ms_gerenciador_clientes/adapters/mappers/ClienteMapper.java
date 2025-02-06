@@ -18,7 +18,6 @@ public class ClienteMapper {
         cliente.setEmail(dto.getEmail());
         cliente.setTelefone(dto.getTelefone());
         cliente.setEndereco(dto.getEndereco());
-        cliente.setCep(dto.getCep());
         return cliente;
     }
 
@@ -29,7 +28,6 @@ public class ClienteMapper {
         dto.setEmail(cliente.getEmail());
         dto.setTelefone(cliente.getTelefone());
         dto.setEndereco(cliente.getEndereco());
-        dto.setCep(cliente.getCep());
         return dto;
     }
 

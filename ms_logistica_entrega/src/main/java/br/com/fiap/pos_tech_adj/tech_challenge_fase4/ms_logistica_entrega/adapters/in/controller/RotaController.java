@@ -1,5 +1,6 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.in.controller;
 
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.RotaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase.CalcularRotaUseCase;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase.RastrearEntregaUseCase;
@@ -38,6 +39,12 @@ public class RotaController {
     @GetMapping("/rastrear/{entregaId}")
     public ResponseEntity<List<RotaDTO>> rastrearEntrega(@PathVariable UUID entregaId) {
         List<RotaDTO> rotas = rastrearEntregaUseCase.rastrearRotasPorEntregaId(entregaId);
+        return ResponseEntity.ok(rotas);
+    }
+
+    @GetMapping("/codigo-rastreio/{codigoRastreio}")
+    public ResponseEntity<List<RotaDTO>> listar(@PathVariable String codigoRastreio) {
+        List<RotaDTO> rotas = rastrearEntregaUseCase.rastrearRotasPorCodigoRastreio(codigoRastreio);
         return ResponseEntity.ok(rotas);
     }
 

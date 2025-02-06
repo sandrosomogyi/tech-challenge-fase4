@@ -36,9 +36,9 @@ public class PedidoController {
         return ResponseEntity.status(201).body(pedidoMapper.toDTO(pedidoCriado));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PedidoDTO> atualizarStatusPedido(@PathVariable UUID id, @RequestParam("status") String status) {
-        var pedidoAtualizado = atualizarStatusPedidoUseCase.executar(id, status);
+    @PutMapping("/atualizar-status")
+    public ResponseEntity<PedidoDTO> atualizarStatusPedido(@RequestParam("pedidoId") String pedidoId, @RequestParam("status") String status) {
+        var pedidoAtualizado = atualizarStatusPedidoUseCase.executar(UUID.fromString(pedidoId), status);
         return ResponseEntity.ok(pedidoMapper.toDTO(pedidoAtualizado));
     }
 
