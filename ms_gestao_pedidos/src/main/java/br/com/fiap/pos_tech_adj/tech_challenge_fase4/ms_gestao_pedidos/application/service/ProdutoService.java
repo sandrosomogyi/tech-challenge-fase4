@@ -4,7 +4,6 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.applicati
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.util.UUID;
 
 @Service
 public class ProdutoService {
