@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Entrega {
     @Id @GeneratedValue
     private UUID id;
-    @Column(name = "pedido_id")
+    @Column(name = "pedido_id", unique = true)
     private UUID pedidoId;
     @Column(name = "entregador_id")
     private UUID entregadorId;
@@ -27,7 +27,7 @@ public class Entrega {
 
     public void atualizarStatus(StatusEntrega novoStatus) {
         this.status = novoStatus;
-        if (novoStatus == StatusEntrega.ENTREGUE) {
+        if (novoStatus == StatusEntrega.CONCLUIDA) {
             this.dataHoraConclusao = LocalDateTime.now();
         }
     }

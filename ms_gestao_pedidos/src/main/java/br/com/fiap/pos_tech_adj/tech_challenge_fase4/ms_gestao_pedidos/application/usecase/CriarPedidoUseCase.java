@@ -2,6 +2,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.applicat
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.mappers.ItemPedidoMapper;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.adapters.mappers.PedidoMapper;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.service.PedidoEventPublisher;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.infra.database.repository.jpa.ItemPedidoJpaRepository;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.ClienteDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.ItemPedidoDTO;
@@ -30,18 +31,19 @@ public class CriarPedidoUseCase {
     private  final ItemPedidoJpaRepository itemPedidoJpaRepository;
     private final ClienteService clienteService;
     private final ProdutoService produtoService;
-    private final RestTemplate restTemplate;
+
+    private final PedidoEventPublisher eventPublisher;
 
     public CriarPedidoUseCase(PedidoJpaRepository pedidoJpaRepository,
                               ItemPedidoJpaRepository itemPedidoJpaRepository,
                               ClienteService clienteService,
                               ProdutoService produtoService,
-                              RestTemplate restTemplate) {
+                              PedidoEventPublisher eventPublisher) {
         this.pedidoJpaRepository = pedidoJpaRepository;
         this.itemPedidoJpaRepository = itemPedidoJpaRepository;
         this.clienteService = clienteService;
         this.produtoService = produtoService;
-        this.restTemplate = restTemplate;
+        this.eventPublisher = eventPublisher;
     }
 
     public Pedido executar(PedidoDTO pedido) {
@@ -108,6 +110,9 @@ public class CriarPedidoUseCase {
 
         // Salva o pedido completo no banco de dados
         Pedido pedidoFinal = pedidoJpaRepository.save(pedidoSalvo);
+
+        // Publicar evento no Kafka
+        eventPublisher.publicarPedidoCriado(pedidoFinal.getId(), cliente.getEndereco());
 
         // Atualizar o estoque do produto (já feito para cada item individualmente)
         return pedidoFinal;

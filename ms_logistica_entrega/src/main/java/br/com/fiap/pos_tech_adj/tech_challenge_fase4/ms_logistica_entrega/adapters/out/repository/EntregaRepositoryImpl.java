@@ -28,6 +28,11 @@ public class EntregaRepositoryImpl implements EntregaRepository {
     }
 
     @Override
+    public Optional<Entrega> findByPedidoId(UUID pedidoId) {
+        return repository.findByPedidoId(pedidoId);
+    }
+
+    @Override
     public List<Entrega> findByStatus(StatusEntrega status) {
         return repository.findByStatus(status);
     }

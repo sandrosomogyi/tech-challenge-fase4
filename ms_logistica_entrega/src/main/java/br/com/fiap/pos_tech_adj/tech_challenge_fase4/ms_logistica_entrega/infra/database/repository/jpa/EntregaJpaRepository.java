@@ -13,4 +13,5 @@ import java.util.UUID;
 public interface EntregaJpaRepository extends JpaRepository<Entrega, UUID> {
     List<Entrega> findByStatus(StatusEntrega status);
     Optional<Entrega> findByCodigoRastreio(String codigoRastreio);
+    Optional<Entrega> findByPedidoId(UUID pedidoId);
 }

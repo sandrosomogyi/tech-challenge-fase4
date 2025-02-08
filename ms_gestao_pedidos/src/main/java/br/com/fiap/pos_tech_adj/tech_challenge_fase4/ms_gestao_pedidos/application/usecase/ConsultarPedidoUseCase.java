@@ -20,10 +20,13 @@ public class ConsultarPedidoUseCase {
 
     public Pedido executar(UUID id) {
         // Busca o pedido no banco de dados por ID
-        Optional<Pedido> pedido = pedidoJpaRepository.findById(id);
+        Pedido pedido = pedidoJpaRepository.findById(id)
+                .orElseThrow(() -> new ControllerMessagingException("Pedido não encontrado"));
+
+        // Publicar evento no Kafka
 
         // Lógica de tratamento se o pedido não for encontrado (por exemplo, lançar uma exceção)
-        return pedido.orElseThrow(() -> new ControllerMessagingException("Pedido não encontrado"));
+        return pedido;
     }
 
     public List<Pedido> executarTodos() {

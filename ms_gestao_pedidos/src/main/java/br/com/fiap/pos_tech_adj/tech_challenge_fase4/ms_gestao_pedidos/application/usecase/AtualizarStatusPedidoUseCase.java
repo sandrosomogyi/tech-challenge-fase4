@@ -1,9 +1,6 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase;
 
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.ClienteDTO;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto.EntregaDTO;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.service.ClienteService;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.service.EntregaService;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.service.PedidoEventPublisher;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.infra.database.repository.jpa.PedidoJpaRepository;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.Pedido;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.PedidoStatus;
@@ -11,22 +8,18 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.ex
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.exceptions.ControllerNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
 public class AtualizarStatusPedidoUseCase {
 
     private final PedidoJpaRepository pedidoJpaRepository;
-    private final ClienteService clienteService;
-    private final EntregaService entregaService;
+    private final PedidoEventPublisher eventPublisher;
 
     public AtualizarStatusPedidoUseCase(PedidoJpaRepository pedidoJpaRepository,
-            ClienteService clienteService,
-            EntregaService entregaService) {
+                                        PedidoEventPublisher eventPublisher) {
         this.pedidoJpaRepository = pedidoJpaRepository;
-        this.clienteService = clienteService;
-        this.entregaService = entregaService;
+        this.eventPublisher = eventPublisher;
     }
 
     public Pedido executar(UUID pedidoId, String status) {
@@ -49,30 +42,6 @@ public class AtualizarStatusPedidoUseCase {
                 if (status.equalsIgnoreCase(PedidoStatus.PENDENTE.toString())) {
                     throw new ControllerMessagingException("Pedido não pode voltar de EM_TRANSITO para PENDENTE.");
                 }
-
-                if ( status.equals("CONCLUIR_PEDIDO")){
-                    status = "CONCLUIDO";
-                }else {
-                    ClienteDTO cliente = clienteService.getClienteById(pedidoExistente.getClienteId());
-
-                    EntregaDTO entrega = new EntregaDTO(
-                            UUID.randomUUID(),
-                            pedidoExistente.getId(),
-                            null,
-                            cliente.getEndereco(),
-                            "PENDENTE",
-                            LocalDateTime.now().plusDays(14),
-                            null,
-                            UUID.randomUUID().toString()
-                    );
-
-                    EntregaDTO entregaSalva = entregaService.criarEntrega(entrega);
-
-                    if (entregaSalva.getId().toString().isEmpty()) {
-                        throw new ControllerMessagingException("Problema ao criar entrega.");
-                    }
-                }
-
                 break;
 
             case CONCLUIDO:
@@ -82,10 +51,16 @@ public class AtualizarStatusPedidoUseCase {
                 break;
         }
 
-
         pedidoExistente.setStatus(PedidoStatus.valueOf(status));
 
+        Pedido pedidoSalvo = pedidoJpaRepository.save(pedidoExistente);
+
+        if (pedidoSalvo.getStatus() == PedidoStatus.CANCELADO) {
+            // Publicar evento no Kafka
+            eventPublisher.publicarPedidoCancelado(pedidoSalvo.getId());
+        }
+
         // Salva a atualização no banco de dados
-        return pedidoJpaRepository.save(pedidoExistente);
+        return pedidoSalvo;
     }
 }

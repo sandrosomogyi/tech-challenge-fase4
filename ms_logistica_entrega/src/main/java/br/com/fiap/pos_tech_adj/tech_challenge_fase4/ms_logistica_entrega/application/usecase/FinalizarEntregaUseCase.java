@@ -3,6 +3,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.appli
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.out.repository.EntregaRepositoryImpl;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.mappers.EntregaMapper;
+import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.service.EntregaEventPublisher;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.service.PedidoService;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.Entrega;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.StatusEntrega;
@@ -16,26 +17,23 @@ import java.util.UUID;
 public class FinalizarEntregaUseCase {
 
     private final EntregaRepositoryImpl entregaRepository;
-    private final PedidoService pedidoService;
+    private final EntregaEventPublisher eventPublisher;
 
     public FinalizarEntregaUseCase(EntregaRepositoryImpl entregaRepository,
-                                   PedidoService pedidoService) {
+                                   EntregaEventPublisher eventPublisher) {
         this.entregaRepository = entregaRepository;
-        this.pedidoService = pedidoService;
+        this.eventPublisher = eventPublisher;
     }
 
     public EntregaDTO executar(UUID entregaId) {
         Entrega entrega = entregaRepository.findById(entregaId)
                 .orElseThrow(() -> new ControllerNotFoundException("Entrega não encontrado."));
 
-        entrega.atualizarStatus(StatusEntrega.ENTREGUE);
+        entrega.atualizarStatus(StatusEntrega.CONCLUIDA);
         Entrega entregaAtualizada = entregaRepository.save(entrega);
 
-        if (!pedidoService.atualizarStatusPedido(entregaAtualizada.getPedidoId().toString(), "CONCLUIR_PEDIDO")){
-            entrega.atualizarStatus(StatusEntrega.EM_TRANSITO);
-            throw new ControllerMessagingException("Problema com MS de Gestão de Pedido ao tentar atualizar o pedido: "
-                    + entregaAtualizada.getPedidoId().toString() + " para o status: FINALIZADO" );
-        }
+        // Publicar evento no Kafka
+        eventPublisher.publicarEntregaAtualizada(entregaAtualizada.getPedidoId(), entregaAtualizada.getStatus().toString());
 
         return EntregaMapper.toDTO(entregaAtualizada);
     }
