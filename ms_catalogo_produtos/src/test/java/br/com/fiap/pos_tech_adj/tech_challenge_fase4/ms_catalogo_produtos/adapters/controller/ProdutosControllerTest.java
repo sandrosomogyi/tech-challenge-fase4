@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ProdutosControllerImplTest {
+public class ProdutosControllerTest {
     @Mock
     private GerenciarProdutoUseCase gerenciarProdutoUseCase;
 
