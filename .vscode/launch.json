@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MsLogisticaEntregaApplication<ms_logistica_entrega>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.MsLogisticaEntregaApplication",
+            "projectName": "ms_logistica_entrega",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

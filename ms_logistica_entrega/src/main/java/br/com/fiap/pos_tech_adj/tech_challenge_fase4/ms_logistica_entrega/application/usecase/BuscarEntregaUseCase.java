@@ -27,9 +27,15 @@ public class BuscarEntregaUseCase {
     }
 
     public List<EntregaDTO> buscarEntregas() {
-        return entregaRepository.findAll()
-                .stream()
-                .map(EntregaMapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            return entregaRepository.findAll()
+                    .stream()
+                    .map(EntregaMapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao listar entregas", e);
+        }
     }
+    
+    
 }

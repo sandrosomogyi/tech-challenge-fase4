@@ -4,6 +4,7 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.applic
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregadorDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class EntregaController {
         this.atribuirEntregadorUseCase = atribuirEntregadorUseCase;
         this.buscarEntregaUseCase = buscarEntregaUseCase;
     }
-
+    
     @PostMapping
     public ResponseEntity<EntregaDTO> criarEntrega(@RequestBody EntregaDTO entregaDTO) {
         EntregaDTO novaEntrega = criarEntregaUseCase.executar(entregaDTO);
@@ -70,4 +71,9 @@ public class EntregaController {
         List<EntregaDTO> entregas = buscarEntregaUseCase.buscarEntregas();
         return ResponseEntity.ok(entregas);
     }
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
+
 }

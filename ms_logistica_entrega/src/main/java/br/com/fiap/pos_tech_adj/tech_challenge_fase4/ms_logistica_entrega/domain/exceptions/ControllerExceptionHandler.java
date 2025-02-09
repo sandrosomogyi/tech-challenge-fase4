@@ -146,4 +146,16 @@ public class ControllerExceptionHandler {
 
         return ResponseEntity.status(status).body(this.standardError);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<StandardError> handleRuntimeException(RuntimeException ex, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        standardError.setTimeStamp(Instant.now());
+        standardError.setStatus(status.value());
+        standardError.setError("Internal Server Error");
+        standardError.setMessage(ex.getMessage());
+        standardError.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(this.standardError);
+    }
 }
