@@ -92,4 +92,5 @@ class ProdutosRepositoryIntegrationTest {
         Optional<Produto> produtoExcluido = produtoJpaRepository.findById(id);
         assertFalse(produtoExcluido.isPresent());
     }
+
 }
