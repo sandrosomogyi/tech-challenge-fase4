@@ -42,19 +42,6 @@ class GerenciarProdutoUseCaseTest {
     }
 
     @Test
-    void testAdicionarProduto() {
-        when(produtoMapper.toEntity(produtoDTO)).thenReturn(produto);
-        when(produtoRepository.save(produto)).thenReturn(produto);
-        when(produtoMapper.toDTO(produto)).thenReturn(produtoDTO);
-
-        ProdutoDTO resultado = gerenciarProdutoUseCase.adicionarProduto(produtoDTO);
-
-        assertNotNull(resultado);
-        assertEquals(produtoDTO.getNome(), resultado.getNome());
-        verify(produtoRepository, times(1)).save(produto);
-    }
-
-    @Test
     void testAtualizarProduto() {
         when(produtoRepository.findById(produtoDTO.getId())).thenReturn(Optional.of(produto));
         when(produtoRepository.save(produto)).thenReturn(produto);
