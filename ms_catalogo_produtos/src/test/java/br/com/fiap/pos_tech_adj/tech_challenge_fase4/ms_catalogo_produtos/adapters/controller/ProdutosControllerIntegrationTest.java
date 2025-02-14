@@ -66,7 +66,6 @@ class ProdutosControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
     @Test
     void testExcluirProduto() throws Exception {
         // Criar primeiro
