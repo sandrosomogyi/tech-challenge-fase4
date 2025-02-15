@@ -3,10 +3,10 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.applicat
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.usecase.AtualizarStatusPedidoUseCase;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.event.EntregaAtualizadaEvent;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import java.util.function.Consumer;
 
-@Service
+@Component
 public class EntregaConsumer{
 
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
@@ -16,7 +16,7 @@ public class EntregaConsumer{
     }
 
     @Bean
-    public Consumer<EntregaAtualizadaEvent> processarEntregaAtualiza() {
+    public Consumer<EntregaAtualizadaEvent> processarEntregaAtualizada() {
         return event -> {
             atualizarStatusPedidoUseCase.executar(event.pedidoId(), event.statusEntrega());
         };

@@ -53,14 +53,7 @@ public class AtualizarStatusPedidoUseCase {
 
         pedidoExistente.setStatus(PedidoStatus.valueOf(status));
 
-        Pedido pedidoSalvo = pedidoJpaRepository.save(pedidoExistente);
-
-        if (pedidoSalvo.getStatus() == PedidoStatus.CANCELADO) {
-            // Publicar evento no Kafka
-            eventPublisher.publicarPedidoCancelado(pedidoSalvo.getId());
-        }
-
         // Salva a atualização no banco de dados
-        return pedidoSalvo;
+        return pedidoJpaRepository.save(pedidoExistente);
     }
 }
