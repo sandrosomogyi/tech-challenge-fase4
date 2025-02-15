@@ -33,7 +33,7 @@ public class FinalizarEntregaUseCase {
         Entrega entregaAtualizada = entregaRepository.save(entrega);
 
         // Publicar evento no Kafka
-        eventPublisher.publicarEntregaAtualizada(entregaAtualizada.getPedidoId(), entregaAtualizada.getStatus().toString());
+        eventPublisher.publicarEntregaAtualizada(entregaAtualizada.getPedidoId(), "CONCLUIDO");
 
         return EntregaMapper.toDTO(entregaAtualizada);
     }

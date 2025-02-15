@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/ms_catalogo_produtos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms_catalogo_produtos/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms_gerenciador_clientes/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms_gestao_pedidos/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms_logistica_entrega/src/main/java" charset="UTF-8" />
