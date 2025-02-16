@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class CriarEntregaUseCase {
 
     private final EntregaRepositoryImpl entregaRepository;
+    
 
     public CriarEntregaUseCase(EntregaRepositoryImpl entregaRepository) {
         this.entregaRepository = entregaRepository;

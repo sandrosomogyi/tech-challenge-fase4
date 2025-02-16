@@ -1,14 +1,10 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.StatusEntrega;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
-@Data
 public class EntregaDTO {
     private UUID id;
     private UUID pedidoId;
@@ -94,5 +90,21 @@ public class EntregaDTO {
 
     public void setCodigoRastreio(String codigoRastreio) {
         this.codigoRastreio = codigoRastreio;
+    }
+
+      @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EntregaDTO that = (EntregaDTO) o;
+        return Objects.equals(id, that.id) &&
+               Objects.equals(status, that.status);
+               // Comparar outros campos...
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, status);
+        // Incluir outros campos...
     }
 }

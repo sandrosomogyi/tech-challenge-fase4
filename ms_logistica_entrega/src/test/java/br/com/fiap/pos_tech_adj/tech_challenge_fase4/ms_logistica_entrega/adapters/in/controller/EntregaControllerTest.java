@@ -2,31 +2,20 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapt
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregaDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase.*;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.entity.StatusEntrega;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.domain.repository.EntregaRepository;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.*;
 
-public class EntregaControllerTest {
+class EntregaControllerTest {
 
     @Mock
     private CriarEntregaUseCase criarEntregaUseCase;
@@ -43,128 +32,101 @@ public class EntregaControllerTest {
     @Mock
     private BuscarEntregaUseCase buscarEntregaUseCase;
 
-    @Mock
-    private EntregaRepository entregaRepository;
-
     @InjectMocks
     private EntregaController entregaController;
 
-    private MockMvc mockMvc;
-
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(entregaController).build();
     }
 
     @Test
-    public void testCriarEntrega() throws Exception {
-        UUID id = UUID.randomUUID();
-        UUID pedidoId = UUID.randomUUID();
-        UUID entregadorId = UUID.randomUUID();
-        String enderecoDestino = "Rua Exemplo, 123";
-        StatusEntrega status = StatusEntrega.PENDENTE;
-        LocalDateTime dataHoraPrevista = LocalDateTime.now().plusDays(1);
-        LocalDateTime dataHoraConclusao = null;
-        String codigoRastreio = "ABC123";
-
-        EntregaDTO entregaDTO = new EntregaDTO(id, pedidoId, entregadorId, enderecoDestino, status, dataHoraPrevista, dataHoraConclusao, codigoRastreio);
-
+    void testCriarEntrega() {
+        EntregaDTO entregaDTO = new EntregaDTO();
         when(criarEntregaUseCase.executar(any(EntregaDTO.class))).thenReturn(entregaDTO);
 
-        String jsonContent = String.format(
-                "{\"id\":\"%s\",\"pedidoId\":\"%s\",\"entregadorId\":\"%s\",\"enderecoDestino\":\"%s\",\"status\":\"%s\",\"dataHoraPrevista\":\"%s\",\"dataHoraConclusao\":%s,\"codigoRastreio\":\"%s\"}",
-                id, pedidoId, entregadorId, enderecoDestino, status, dataHoraPrevista, dataHoraConclusao, codigoRastreio);
+        ResponseEntity<EntregaDTO> response = entregaController.criarEntrega(entregaDTO);
 
-        mockMvc.perform(post("/api/entregas")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(jsonContent))
-                .andExpect(status().isCreated());
+        assertEquals(201, response.getStatusCodeValue());
+        assertEquals(entregaDTO, response.getBody());
     }
 
-
     @Test
-    public void testFinalizarEntrega() throws Exception {
+    void testFinalizarEntrega() {
         UUID id = UUID.randomUUID();
         EntregaDTO entregaDTO = new EntregaDTO();
-        when(finalizarEntregaUseCase.executar(any(UUID.class))).thenReturn(entregaDTO);
+        when(finalizarEntregaUseCase.executar(id)).thenReturn(entregaDTO);
 
-        mockMvc.perform(put("/api/entregas/finalizar/" + id))
-                .andExpect(status().isOk());
+        ResponseEntity<EntregaDTO> response = entregaController.finalizarEntrega(id);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(entregaDTO, response.getBody());
     }
 
     @Test
-    public void testCancelarEntrega() throws Exception {
+    void testCancelarEntrega() {
         UUID id = UUID.randomUUID();
         EntregaDTO entregaDTO = new EntregaDTO();
-        when(cancelarEntregaUseCase.executar(any(UUID.class))).thenReturn(entregaDTO);
+        when(cancelarEntregaUseCase.executar(id)).thenReturn(entregaDTO);
 
-        mockMvc.perform(put("/api/entregas/cancelar/" + id))
-                .andExpect(status().isOk());
+        ResponseEntity<EntregaDTO> response = entregaController.cancelarEntrega(id);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(entregaDTO, response.getBody());
     }
 
     @Test
-    public void testAtribuirEntregador() throws Exception {
+    void testAtribuirEntregador() {
         UUID entregaId = UUID.randomUUID();
         UUID entregadorId = UUID.randomUUID();
         EntregaDTO entregaDTO = new EntregaDTO();
-        when(atribuirEntregadorUseCase.executar(any(UUID.class), any(UUID.class))).thenReturn(entregaDTO);
+        when(atribuirEntregadorUseCase.executar(entregaId, entregadorId)).thenReturn(entregaDTO);
 
-        mockMvc.perform(put("/api/entregas/atribuir-entregador")
-                .param("entregaId", entregaId.toString())
-                .param("entregadorId", entregadorId.toString()))
-                .andExpect(status().isOk());
+        ResponseEntity<EntregaDTO> response = entregaController.atribuirEntregador(entregaId, entregadorId);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(entregaDTO, response.getBody());
     }
 
     @Test
-    public void testBuscarEntregaPorId() throws Exception {
+    void testBuscarEntregaPorId() {
         UUID id = UUID.randomUUID();
         EntregaDTO entregaDTO = new EntregaDTO();
-        when(buscarEntregaUseCase.buscarEntregaPorId(any(UUID.class))).thenReturn(Optional.of(entregaDTO));
+        when(buscarEntregaUseCase.buscarEntregaPorId(id)).thenReturn(Optional.of(entregaDTO));
 
-        mockMvc.perform(get("/api/entregas/" + id))
-                .andExpect(status().isOk());
+        ResponseEntity<EntregaDTO> response = entregaController.buscarEntregaPorId(id);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(entregaDTO, response.getBody());
     }
 
     @Test
-    public void testListarEntregas() throws Exception {
-        List<EntregaDTO> entregas = Arrays.asList(new EntregaDTO(), new EntregaDTO());
+    void testBuscarEntregaPorIdNotFound() {
+        UUID id = UUID.randomUUID();
+        when(buscarEntregaUseCase.buscarEntregaPorId(id)).thenReturn(Optional.empty());
+
+        ResponseEntity<EntregaDTO> response = entregaController.buscarEntregaPorId(id);
+
+        assertEquals(404, response.getStatusCodeValue());
+    }
+
+    @Test
+    void testListarEntregas() {
+        List<EntregaDTO> entregas = List.of(new EntregaDTO(), new EntregaDTO());
         when(buscarEntregaUseCase.buscarEntregas()).thenReturn(entregas);
 
-        mockMvc.perform(get("/api/entregas"))
-                .andExpect(status().isOk());
+        ResponseEntity<List<EntregaDTO>> response = entregaController.listarEntregas();
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(entregas, response.getBody());
     }
 
     @Test
-    public void testCriarEntregaErro() throws Exception {
-    when(criarEntregaUseCase.executar(any(EntregaDTO.class))).thenThrow(new RuntimeException("Erro simulado ao criar entrega"));
+    void testHandleRuntimeException() {
+        RuntimeException exception = new RuntimeException("Internal Server Error");
+        ResponseEntity<String> response = entregaController.handleRuntimeException(exception);
 
-    String jsonContent = "{\"id\":\"1\",\"pedidoId\":\"1\",\"entregadorId\":\"1\",\"enderecoDestino\":\"Rua Exemplo, 123\",\"status\":\"PENDENTE\",\"dataHoraPrevista\":\"2025-02-10T10:00:00\",\"dataHoraConclusao\":null,\"codigoRastreio\":\"ABC123\"}";
-
-    mockMvc.perform(post("/api/entregas")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(jsonContent))
-            .andExpect(status().isInternalServerError());
+        assertEquals(500, response.getStatusCodeValue());
+        assertEquals("Internal Server Error", response.getBody());
     }
-
-    @Test
-    public void testBuscarEntregasErro() throws Exception {
-    when(buscarEntregaUseCase.buscarEntregas()).thenThrow(new RuntimeException("Erro simulado ao acessar o repositório"));
-
-    RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-        buscarEntregaUseCase.buscarEntregas();
-    });
-
-    assertEquals("Erro simulado ao acessar o repositório", exception.getMessage());
-    }
-    
-    @Test
-    public void testBuscarEntregaPorIdErro() throws Exception {
-        when(buscarEntregaUseCase.buscarEntregaPorId(any(UUID.class))).thenReturn(Optional.empty());
-
-        UUID id = UUID.randomUUID();
-        mockMvc.perform(get("/api/entregas/" + id))
-                .andExpect(status().isNotFound());
-    }
-
 }

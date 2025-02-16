@@ -1,10 +1,8 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 public class RotaDTO {
@@ -83,4 +81,20 @@ public class RotaDTO {
     public void setDataSaida(LocalDateTime dataSaida) {
         this.dataSaida = dataSaida;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    RotaDTO rotaDTO = (RotaDTO) o;
+    return Objects.equals(id, rotaDTO.id) &&
+           Objects.equals(pontoPartida, rotaDTO.pontoPartida) &&
+           Objects.equals(destino, rotaDTO.destino);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pontoPartida, destino);
+    }
+
 }
