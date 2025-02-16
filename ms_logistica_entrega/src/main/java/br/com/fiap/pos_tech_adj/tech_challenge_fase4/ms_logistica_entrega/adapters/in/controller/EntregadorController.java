@@ -3,6 +3,7 @@ package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapt
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregadorDTO;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase.GerenciarEntregadorUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,5 +50,10 @@ public class EntregadorController {
     public ResponseEntity<List<EntregadorDTO>> listarEntregadores() {
         List<EntregadorDTO> entregadores = gerenciarEntregadorUseCase.buscarEntregadores();
         return ResponseEntity.ok(entregadores);
+    }
+
+        @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }

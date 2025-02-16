@@ -51,6 +51,6 @@ public class PedidoController {
     @GetMapping
     public ResponseEntity<List<PedidoDTO>> listarPedidos() {
         var pedidos = consultarPedidoUseCase.executarTodos();
-        return ResponseEntity.ok(pedidos.stream().map(PedidoMapper::toDTO).collect(Collectors.toList()));
+        return ResponseEntity.ok(pedidos.stream().map(pedidoMapper::toDTO).collect(Collectors.toList()));
     }
 }

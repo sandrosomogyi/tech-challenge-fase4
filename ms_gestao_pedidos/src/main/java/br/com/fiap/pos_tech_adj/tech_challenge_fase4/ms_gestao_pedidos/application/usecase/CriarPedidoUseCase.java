@@ -89,8 +89,6 @@ public class CriarPedidoUseCase {
             // Atualizar estoque do produto
             produtoService.updateEstoqueProduto(produto, item.getQuantidade());
 
-
-
             item.setTotal(produto.getPreco().multiply(new BigDecimal(item.getQuantidade())));
 
             var entityItem = ItemPedidoMapper.toEntity(item);
