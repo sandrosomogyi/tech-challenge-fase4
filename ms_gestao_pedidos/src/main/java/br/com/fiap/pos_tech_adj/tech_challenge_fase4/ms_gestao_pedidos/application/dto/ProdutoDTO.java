@@ -1,6 +1,7 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.application.dto;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class ProdutoDTO {
     private Long id;
@@ -27,6 +28,10 @@ public class ProdutoDTO {
         this.descricao = descricao;
         this.preco = preco;
         this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public ProdutoDTO(UUID produtoId, String string, BigDecimal ten, int i) {
+        //TODO Auto-generated constructor stub
     }
 
     public Long getId() {
