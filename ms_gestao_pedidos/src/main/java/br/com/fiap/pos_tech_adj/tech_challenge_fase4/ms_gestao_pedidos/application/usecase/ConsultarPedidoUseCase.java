@@ -6,7 +6,6 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.ex
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

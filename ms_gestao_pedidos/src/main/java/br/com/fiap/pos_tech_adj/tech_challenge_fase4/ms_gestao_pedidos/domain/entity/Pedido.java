@@ -40,7 +40,10 @@ public class Pedido {
 
 
     public Pedido() {
-        //TODO Auto-generated constructor stub
+        
+    }
+
+    public Pedido(UUID pedidoId, String string) {
     }
 
     public UUID getId() {
@@ -113,44 +116,6 @@ public class Pedido {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Pedido other = (Pedido) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (clienteId == null) {
-            if (other.clienteId != null)
-                return false;
-        } else if (!clienteId.equals(other.clienteId))
-            return false;
-        if (itens == null) {
-            if (other.itens != null)
-                return false;
-        } else if (!itens.equals(other.itens))
-            return false;
-        if (dataCriacao == null) {
-            if (other.dataCriacao != null)
-                return false;
-        } else if (!dataCriacao.equals(other.dataCriacao))
-            return false;
-        if (total == null) {
-            if (other.total != null)
-                return false;
-        } else if (!total.equals(other.total))
-            return false;
-        if (status != other.status)
-            return false;
-        return true;
-    }
 
     
 }
