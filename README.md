@@ -78,6 +78,42 @@ cd tech-challenge-fase4
 
 ---
 
+## Executando o Docker Compose para Kafka e Zookeeper
+
+Este projeto utiliza Docker Compose para configurar e executar instâncias do Kafka e Zookeeper. Siga os passos abaixo para iniciar os serviços e ter a fila Kafka disponível para uso nos microsserviços.
+
+1. **Inicie os serviços do Kafka e Zookeeper:**
+   No diretório raiz do projeto, onde o arquivo docker-compose.yml está localizado, execute o seguinte comando:
+```bash
+docker-compose up -d
+```
+Este comando irá baixar as imagens necessárias (se ainda não estiverem no seu sistema) e iniciar os contêineres em segundo plano.
+
+2. **Verifique se os serviços estão em execução**
+   Para verificar se os contêineres estão em execução, utilize o comando:
+```bash
+docker-compose ps
+```
+
+3. **Configuração dos Microsserviços:**
+   Cada microsserviço deve estar configurado para se conectar ao Kafka utilizando o endereço localhost:9092. Certifique-se de que as configurações de conexão do Kafka nos microsserviços estejam corretas.
+
+4. **Parar os serviços:**
+   Quando não precisar mais dos serviços, você pode parar e remover os contêineres com o comando:
+
+   ```bash
+   docker-compose down
+   ```
+
+
+**Notas Adicionais**
+
+O arquivo `docker-compose.yml` configura o Kafka para escutar nas portas 9092 (externa) e 9093 (interna). Certifique-se de que essas portas estejam disponíveis no seu sistema.
+
+O Zookeeper está configurado para escutar na porta 2181.
+
+---
+
 ## 🛠️ Execução dos Testes
 Para informações sobre a execução de testes e a geração de relatórios, consulte os READMEs dos microserviços relevantes.
 
