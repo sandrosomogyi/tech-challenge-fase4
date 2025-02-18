@@ -1,11 +1,11 @@
-#Tech Challenger - FASE 4 🚀🚀
+# Tech Challenger - FASE 4 🚀🚀
 
 Projeto do Tech Challenge da Pós Tech FIAP - Arquitetura e Desenvolvimento Java (Fase 4)
 Este documento fornece uma visão geral do projeto e aponta para as documentações detalhadas disponíveis nos READMEs individuais de cada microserviço.
 
 ---
 
-##📌 Requisitos
+## 📌 Requisitos
 Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
 Java 17+: Necessário para rodar os microserviços baseados em Spring Boot.
