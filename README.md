@@ -26,7 +26,7 @@ Clone o repositório:
 ```bash
 git clone https://github.com/sandrosomogyi/tech-challenge-fase4.git
 cd tech-challenge-fase4
-
+ ```
 ###Consulte os READMEs individuais de cada microserviço para instruções detalhadas:
 
 - ms_gerenciador_clientes: README.md
