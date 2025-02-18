@@ -2,7 +2,9 @@
 
 Projeto do Tech Challenge da Pós Tech FIAP - Arquitetura e Desenvolvimento Java (Fase 4)
 Este documento fornece uma visão geral do projeto e aponta para as documentações detalhadas disponíveis nos READMEs individuais de cada microserviço.
+
 ---
+
 ##📌 Requisitos
 Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
@@ -15,7 +17,8 @@ Docker e Docker Compose: Para gerenciar e rodar os contêineres.
 Postman ou Insomnia: Para interação com os serviços.
 
 ---
-##▶️ Executar o Projeto
+
+## ▶️ Executar o Projeto
 Para executar o projeto localmente, siga os passos abaixo:
 
 Clone o repositório:
@@ -35,15 +38,18 @@ cd tech-challenge-fase4
 - ms_logistica_entrega: README.md
 
 ---
-##🛠️ Testes e Relatórios
+
+## 🛠️ Execução dos Testes
 Para informações sobre a execução de testes e a geração de relatórios, consulte os READMEs dos microserviços relevantes.
 
 ---
-##🌐 Usando o Postman
+
+## 🛠️ Execução dos Testes e Relatórios
 Instruções detalhadas para a configuração e uso do Postman também estão disponíveis na documentação do projeto na página da entrega do projeto no site da Fiap.
 
 ---
-##📈 Conclusão
+
+## ✅ Conclusão
 Seguindo os guias nos READMEs de cada microserviço, você conseguirá: 
 ✔️ Executar os testes do projeto. 
 ✔️ Gerar relatórios detalhados. 
@@ -53,3 +59,6 @@ Seguindo os guias nos READMEs de cada microserviço, você conseguirá:
 Caso encontre problemas ou tenha dúvidas, consulte a documentação do projeto ou entre em contato com a equipe.
 
 🚀** Bons testes e sucesso no projeto!**
+
+
+
