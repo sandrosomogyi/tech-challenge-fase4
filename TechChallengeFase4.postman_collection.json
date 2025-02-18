@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "f66cee2b-8e52-4dd3-ab1d-ee682d9ff13a",
+		"name": "TechChallengeFase4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7932331",
+		"_collection_link": "https://tech-challenge-ps-fiap.postman.co/workspace/Tech-Challenge-P%C3%B3s-FIAP-Workspa~4f6f3282-dbd4-440a-835e-1ba5a2cdf888/collection/29566921-f66cee2b-8e52-4dd3-ab1d-ee682d9ff13a?action=share&source=collection_link&creator=7932331"
+	},
+	"item": [
+		{
+			"name": "msGerenciadorClientes",
+			"item": [
+				{
+					"name": "getClientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/clientes/5b35110a-67d8-4f8f-bd2b-95a6122c1196",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"clientes",
+								"5b35110a-67d8-4f8f-bd2b-95a6122c1196"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putCliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Pedro Silva\",\r\n  \"email\": \"pedro@gmail.com\",\r\n  \"telefone\": \"11922221111\",\r\n  \"endereco\": \"Avenida Brasil, São roque, SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/clientes/8ebec4b4-43a2-457e-a69a-7b19acf3b76c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"clientes",
+								"8ebec4b4-43a2-457e-a69a-7b19acf3b76c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/clientes/e329538b-ee76-4b1c-9ca4-eb2ffd4fb80c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"clientes",
+								"e329538b-ee76-4b1c-9ca4-eb2ffd4fb80c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Pedro Silva\",\r\n  \"email\": \"pedro@gmail.com\",\r\n  \"telefone\": \"11922221111\",\r\n  \"endereco\": \"Avenida Brasil, São roque, SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "msCatalogoProdutos",
+			"item": [
+				{
+					"name": "getProdutos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProduto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/produtos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putProduto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Barbeador\",\r\n  \"descricao\": \"Barbeador Plus\",\r\n  \"preco\": \"9.99\",\r\n  \"quantidadeEstoque\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/produtos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/produtos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postProduto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Barbeador\",\r\n    \"descricao\": \"Barbeador Plus\",\r\n    \"preco\": \"9.99\",\r\n    \"quantidadeEstoque\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cargaProdutos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/produtos/carga-produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos",
+								"carga-produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "acrescentarEstoqueProduto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/produtos/acrescentar-estoque/1?quantidade=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos",
+								"acrescentar-estoque",
+								"1"
+							],
+							"query": [
+								{
+									"key": "quantidade",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subtrairEstoqueProduto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/produtos/subtrair-estoque/1?quantidade=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"produtos",
+								"subtrair-estoque",
+								"1"
+							],
+							"query": [
+								{
+									"key": "quantidade",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "msGestaoPedidos",
+			"item": [
+				{
+					"name": "getPedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizarStatusPedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/atualizar-status?pedidoId=312c905b-a2d2-494a-8f00-af2f38918806&status=PENDENTE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"atualizar-status"
+							],
+							"query": [
+								{
+									"key": "pedidoId",
+									"value": "312c905b-a2d2-494a-8f00-af2f38918806"
+								},
+								{
+									"key": "status",
+									"value": "PENDENTE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postPedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clienteId\": \"5b35110a-67d8-4f8f-bd2b-95a6122c1196\",\r\n  \"itens\": [\r\n    {\r\n      \"produtoId\": 1,\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/2462920c-c7a2-4542-b627-185603dcff54",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"2462920c-c7a2-4542-b627-185603dcff54"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "msLogisticaEntrega",
+			"item": [
+				{
+					"name": "Entregador",
+					"item": [
+						{
+							"name": "listarEntregadores",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregadores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregadores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscarEntregadorPorId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregadores/id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregadores",
+										"id"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cadastrarEntregador",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Leones Grecio\",\r\n  \"telefone\": \"11922221111\",\r\n  \"veiculo\": \"EUI9D20\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/api/entregadores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregadores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizarEntregador",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregadores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregadores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "removerEntregador",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregadores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregadores"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Entrega",
+					"item": [
+						{
+							"name": "criarEntrega",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"pedidoId\": \"312c905b-a2d2-494a-8f00-af2f38918806\",\r\n  \"entregadorId\": null,\r\n  \"enderecoDestino\": \"Mairinque, SP\",\r\n  \"status\": \"PENDENTE\",\r\n  \"dataHoraPrevista\": null,\r\n  \"dataHoraConclusao\": null,\r\n  \"codigoRastreio\": \"TESTE01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/api/entregas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "finalizarEntrega",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregas/finalizar/6c6886dc-c47d-4cf4-be3b-3c3df08962fe",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregas",
+										"finalizar",
+										"6c6886dc-c47d-4cf4-be3b-3c3df08962fe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cancelarEntrega",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregas/cancelar/id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregas",
+										"cancelar",
+										"id"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atribuirEntregador",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregas/atribuir-entregador?entregaId=6c6886dc-c47d-4cf4-be3b-3c3df08962fe&entregadorId=e046a3d8-d85b-41a8-bfd9-c79307b78004",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregas",
+										"atribuir-entregador"
+									],
+									"query": [
+										{
+											"key": "entregaId",
+											"value": "6c6886dc-c47d-4cf4-be3b-3c3df08962fe"
+										},
+										{
+											"key": "entregadorId",
+											"value": "e046a3d8-d85b-41a8-bfd9-c79307b78004"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "listarEntregas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscarEntregaPorId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/entregas/id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"entregas",
+										"id"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Rota",
+					"item": [
+						{
+							"name": "rastrearEntrega",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/rotas/rastrear/02199038-8dd1-4438-bc11-5696f8a3b04e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"rotas",
+										"rastrear",
+										"02199038-8dd1-4438-bc11-5696f8a3b04e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "calcularRota",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"entregaId\": \"022a085f-a536-49c9-917b-8bd7102af5e7\",\r\n  \"origem\": \"São Roque, SP\",\r\n  \"destino\": \"Sorocaba, SP\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/api/rotas/calcular",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"rotas",
+										"calcular"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rastreaCodigoRastreio",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/rotas/codigo-rastreio/TESTE01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"rotas",
+										"codigo-rastreio",
+										"TESTE01"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
