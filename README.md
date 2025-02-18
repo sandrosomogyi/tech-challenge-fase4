@@ -5,6 +5,45 @@ Este documento fornece uma visão geral do projeto e aponta para as documentaç�
 
 ---
 
+## Projeto de Gestão de Pedidos e Entregas
+
+Este projeto é composto por quatro microsserviços que trabalham juntos para gerenciar pedidos e entregas. Cada microsserviço é responsável por uma parte específica do fluxo de processamento de pedidos e entregas.
+
+## Microsserviços
+
+1. **Gestão de Pedidos**
+   - Responsável pela criação e atualização de pedidos.
+   - Envia eventos para o Kafka quando um pedido é criado ou atualizado.
+
+2. **Logística de Entregas**
+   - Consome eventos do Kafka para criar e gerenciar entregas.
+   - Atualiza o status das entregas e envia eventos de atualização para o Kafka.
+
+3. **Atribuição de Entregadores**
+   - Atribui entregadores às entregas.
+   - Atualiza o status das entregas para "EM_TRANSITO" e envia eventos para o Kafka.
+
+4. **Finalização de Entregas**
+   - Gerencia a conclusão das entregas.
+   - Atualiza o status das entregas para "CONCLUIDA" e envia eventos para o Kafka.
+
+## Fluxo de Processamento
+
+1. **Criação de Pedido**
+   - Um pedido é criado no microsserviço de Gestão de Pedidos.
+   - Um evento é enviado para o Kafka.
+
+2. **Criação de Entrega**
+   - O microsserviço de Logística de Entregas consome o evento do Kafka e cria uma entrega associada ao pedido.
+
+3. **Atribuição de Entregador**
+   - Quando um entregador é atribuído à entrega, o status da entrega e do pedido é atualizado para "EM_TRANSITO".
+   - Um evento é enviado para o Kafka.
+
+4. **Finalização da Entrega**
+   - Quando a entrega é concluída, o status da entrega é atualizado para "CONCLUIDA".
+   - Um evento é enviado para o Kafka e o status do pedido é atualizado para "CONCLUIDO".
+
 ## 📌 Requisitos
 Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
