@@ -29,13 +29,13 @@ cd tech-challenge-fase4
  ```
 ##Consulte os READMEs individuais de cada microserviço para instruções detalhadas:
 
-- ms_gerenciador_clientes: README.md
+- ms_gerenciador_clientes: [README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/ms_gerenciador_clientes/README.md)
 
-- ms_catalogo_produtos: README.md
+- ms_catalogo_produtos: [README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/ms_catalogo_produtos/README.md)
 
-- ms_gestao_pedidos: README.md
+- ms_gestao_pedidos: [ms_gestao_pedidos/README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/ms_gestao_pedidos/README.md)
 
-- ms_logistica_entrega: README.md
+- ms_logistica_entrega: [README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/README.md)
 
 ---
 
