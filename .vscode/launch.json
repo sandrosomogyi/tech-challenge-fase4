@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MsCatalogoProdutosApplication",
+            "request": "launch",
+            "mainClass": "br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_catalogo_produtos.MsCatalogoProdutosApplication",
+            "projectName": "ms_catalogo_produtos"
+        },
+        {
+            "type": "java",
+            "name": "MsGerenciadorClientesApplication",
+            "request": "launch",
+            "mainClass": "br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gerenciador_clientes.MsGerenciadorClientesApplication",
+            "projectName": "ms_gerenciador_clientes"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-MsLogisticaEntregaApplication<ms_logistica_entrega>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
