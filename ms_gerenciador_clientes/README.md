@@ -60,3 +60,8 @@ spring.jpa.properties.hibernate.format_sql=true
 ### Acessando a Aplicação
 
 Após iniciar a aplicação, ela estará disponível no seguinte endereço: http://localhost:8082
+
+
+### Testando com Postman
+
+Na raiz do projeto, há uma coleção do Postman chamada `TechChallengeFase4.postman_collection.json` que pode ser utilizada para testar o microsserviço. A pasta correspondente a este microsserviço é `msGerenciadorClientes`.
