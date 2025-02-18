@@ -44,7 +44,7 @@ Para informações sobre a execução de testes e a geração de relatórios, co
 
 ---
 
-## 🛠️ Execução dos Testes e Relatórios
+## 🌐 Usando o Postman
 Instruções detalhadas para a configuração e uso do Postman também estão disponíveis na documentação do projeto na página da entrega do projeto no site da Fiap.
 
 ---
