@@ -5,7 +5,6 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.en
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.entity.PedidoStatus;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -24,7 +23,7 @@ public class PedidoMapper {
         );
     }
 
-    public static PedidoDTO toDTO(Pedido entity) {
+    public PedidoDTO toDTO(Pedido entity) {
         return new PedidoDTO(
                 entity.getId(),
                 entity.getClienteId(),

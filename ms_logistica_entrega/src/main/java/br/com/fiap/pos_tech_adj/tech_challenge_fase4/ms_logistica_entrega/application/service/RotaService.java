@@ -18,13 +18,14 @@ public class RotaService {
     private static final String OSRM_API_URL = "http://router.project-osrm.org/route/v1/driving/";
 
     private final RestTemplate restTemplate;
-
+    
+    
     public RotaService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     public Rota calcularMelhorRota(UUID entregaId, String origem, String destino) {
-
+        
         //Converte para latitude e longitude
         String origemConvertido = convertEndereco(origem);
         String destinoConvertido = convertEndereco(destino);
@@ -77,12 +78,13 @@ public class RotaService {
                     .queryParam("format", "json")
                     .queryParam("q", endereco + ",BR") // Não codifica manualmente
                     .build()
-                    .toUriString();
-
+                    .toUriString();                    
 
             String response = restTemplate.getForObject(url, String.class);
+            if (response == null || response.isEmpty()) {
+                throw new ControllerMessagingException("Erro: A resposta da Nominatim API está vazia para o endereço: " + endereco);
+            }
             JSONArray jsonArray = new JSONArray(response);
-
             if (!jsonArray.isEmpty()) {
                 JSONObject location = jsonArray.getJSONObject(0);
                 String lat = location.getString("lat");

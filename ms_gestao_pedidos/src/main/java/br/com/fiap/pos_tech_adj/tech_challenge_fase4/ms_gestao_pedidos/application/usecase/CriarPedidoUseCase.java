@@ -17,7 +17,6 @@ import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.applicati
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.exceptions.ControllerMessagingException;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_gestao_pedidos.domain.exceptions.ControllerNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -88,8 +87,6 @@ public class CriarPedidoUseCase {
 
             // Atualizar estoque do produto
             produtoService.updateEstoqueProduto(produto, item.getQuantidade());
-
-
 
             item.setTotal(produto.getPreco().multiply(new BigDecimal(item.getQuantidade())));
 

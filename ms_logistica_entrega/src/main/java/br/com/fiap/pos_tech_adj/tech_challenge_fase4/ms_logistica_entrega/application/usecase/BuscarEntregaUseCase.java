@@ -1,10 +1,8 @@
 package br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.usecase;
 
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.mappers.EntregaMapper;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.mappers.EntregadorMapper;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.adapters.out.repository.EntregaRepositoryImpl;
 import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregaDTO;
-import br.com.fiap.pos_tech_adj.tech_challenge_fase4.ms_logistica_entrega.application.dto.EntregadorDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,9 +25,15 @@ public class BuscarEntregaUseCase {
     }
 
     public List<EntregaDTO> buscarEntregas() {
-        return entregaRepository.findAll()
-                .stream()
-                .map(EntregaMapper::toDTO)
-                .collect(Collectors.toList());
+        try {
+            return entregaRepository.findAll()
+                    .stream()
+                    .map(EntregaMapper::toDTO)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao listar entregas", e);
+        }
     }
+    
+    
 }
