@@ -17,16 +17,19 @@ import java.util.List;
 @RequestMapping("/api/produtos")
 public class ProdutoController {
 
-    private JobLauncher jobLauncher;
-    private Job cargaProdutosJob;
+    private final JobLauncher jobLauncher;
+    private final Job cargaProdutosJob;
 
     private final GerenciarProdutoUseCase gerenciarProdutoUseCase;
     private final GerenciarEstoqueProdutoUseCase gerenciarEstoqueProdutoUseCase;
 
     @Autowired
-    public ProdutoController(GerenciarProdutoUseCase gerenciarProdutoUseCase, GerenciarEstoqueProdutoUseCase gerenciarEstoqueProdutoUseCase) {
+    public ProdutoController(GerenciarProdutoUseCase gerenciarProdutoUseCase, GerenciarEstoqueProdutoUseCase gerenciarEstoqueProdutoUseCase,
+                             JobLauncher jobLauncher, Job cargaProdutosJob) {
         this.gerenciarProdutoUseCase = gerenciarProdutoUseCase;
         this.gerenciarEstoqueProdutoUseCase = gerenciarEstoqueProdutoUseCase;
+        this.jobLauncher = jobLauncher;
+        this.cargaProdutosJob = cargaProdutosJob;
     }
 
     @PostMapping("/carga-produtos")
