@@ -25,10 +25,15 @@ public class Pedido {
     private LocalDateTime dataCriacao;
     private BigDecimal total;
     private PedidoStatus status;
-    
-    public Pedido(UUID uuid, UUID uuid2, List<ItemPedido> list, LocalDateTime localDateTime, BigDecimal bigDecimal, PedidoStatus pedidoStatus) { 
-        
-     }
+
+    public Pedido(UUID id, UUID clienteId, List<ItemPedido> itens, LocalDateTime dataCriacao, BigDecimal total, PedidoStatus status) {
+        this.id = id;
+        this.clienteId = clienteId;
+        this.itens = itens;
+        this.dataCriacao = dataCriacao;
+        this.total = total;
+        this.status = status;
+    }
 
     public Pedido(UUID clienteId, List<ItemPedido> itens) {
         this.id = UUID.randomUUID();
@@ -40,10 +45,6 @@ public class Pedido {
 
 
     public Pedido() {
-        
-    }
-
-    public Pedido(UUID pedidoId, String string) {
     }
 
     public UUID getId() {
@@ -70,8 +71,6 @@ public class Pedido {
         this.itens = itens;
     }
 
-   
-
     public void concluirPedido() {
         this.status = PedidoStatus.CONCLUIDO;
     }
@@ -79,6 +78,7 @@ public class Pedido {
     public void cancelarPedido() {
         this.status = PedidoStatus.CANCELADO;
     }
+
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
