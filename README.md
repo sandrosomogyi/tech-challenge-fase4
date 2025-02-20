@@ -74,7 +74,7 @@ cd tech-challenge-fase4
 
 - ms_gestao_pedidos: [README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/ms_gestao_pedidos/README.md)
   
-- ms_logistica_entrega: [README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/README.md)
+- ms_logistica_entrega: [README.md](https://github.com/sandrosomogyi/tech-challenge-fase4/blob/main/ms_logistica_entrega/README.md)
 
 ---
 
